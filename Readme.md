@@ -42,37 +42,11 @@ This project demonstrates a containerized backend and frontend application deplo
 - Docker installed on your local machine.
 - MongoDB accessible locally or running as a container.
 
-### Backend Setup
+head to the root directory and run 
 
-1. Navigate to the `backend` directory:
-   ```bash
-   cd backend
-   ```
-````
-
-2. Build the Docker image:
-   ```bash
-   docker build -t backend:latest .
-   ```
-3. Run the backend container:
-   ```bash
-   docker run -p 8081:8081 --name backend backend:latest
-   ```
-
-### Frontend Setup
-
-1. Navigate to the `frontend` directory:
-   ```bash
-   cd frontend
-   ```
-2. Build the Docker image:
-   ```bash
-   docker build -t frontend:latest .
-   ```
-3. Run the frontend container:
-   ```bash
-   docker run -p 3000:80 --name frontend frontend:latest
-   ```
+```bash
+ docker-compose -f docker-compose.local.yaml up --build
+```
 
 ### Access the Application
 
@@ -160,7 +134,7 @@ The GitHub Actions pipeline is designed to:
 
 ### Decisions
 
-1. Used `NodePort` for external access in Minikube to avoid the need for a cloud-based load balancer.
+1. Used `NodePort` for external access in Minikube.
 2. Leveraged `kompose` for converting `docker-compose.yml` into Kubernetes manifests for faster setup.
 
 ### Assumptions
@@ -172,7 +146,6 @@ The GitHub Actions pipeline is designed to:
 
 1. **ImagePullBackOff**: Encountered due to missing GHCR authentication. Resolved by adding a `docker-registry` secret.
 2. **CORS Issues**: Resolved by enabling CORS in the backend for React-based frontend communication.
-3. **Repository Naming**: GHCR requires lowercase repository names; adjusted workflow to enforce lowercase names dynamically.
 
 ---
 
