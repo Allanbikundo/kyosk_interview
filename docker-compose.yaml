@@ -2,9 +2,7 @@ version: "3.8"
 
 services:
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ghcr.io/allanbikundo/backend:latest
     ports:
       - "8081:8081"
     environment:
@@ -14,9 +12,7 @@ services:
     networks:
       - app-network
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: ghcr.io/allanbikundo/frontend:latest
     ports:
       - "3000:80" # Expose Nginx on port 3000
     depends_on:
